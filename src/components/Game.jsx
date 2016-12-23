@@ -13,7 +13,17 @@ class Game extends Component {
     /*
     ** Should trigger a prompt to ask 
     ** for the room name and
-    ** the number of players
+    ** the number of players.
+    */
+
+
+    /*
+    ** TEMPORARY SERVER REQUEST                 ****
+    ** JUST TO SEE IF THINGS WORK               ****
+    ** REMOVE LATER                             ****
+    ************************************************
+    ** This function should prompt users to
+    ** create a room and input the # of players
     */
     fetch('/game/new', {
       method: 'GET',

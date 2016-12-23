@@ -1,3 +1,7 @@
+/*
+**  Handle routes from '/game'
+*/
+
 var router = require('express').Router();
 var game = require('./handlers/routeHandlers');
 
@@ -6,6 +10,7 @@ var cache = ['apple', 'banana', 'orange', 'eggplant', 'pear', 'peach'];
 router.use((req, res, next) => {
   /*
   **  Middle ware activity
+  **  * Authenticaion? *
   */
   next();
 });
