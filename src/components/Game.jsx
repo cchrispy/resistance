@@ -10,6 +10,11 @@ class Game extends Component {
   }
 
   newGame() {
+    /*
+    ** Should trigger a prompt to ask 
+    ** for the room name and
+    ** the number of players
+    */
     fetch('/game/new', {
       method: 'GET',
     }).then(res => {
@@ -22,6 +27,14 @@ class Game extends Component {
     }).catch(err => {
       console.log('Error: ', err);
     });
+  }
+
+  prompt() {
+    /*
+    ** Prompt the user to specify a room name
+    ** and enter the number of players to join
+    ** Send the results to the server
+    */
   }
 
   render() {

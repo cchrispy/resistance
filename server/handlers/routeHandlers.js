@@ -1,5 +1,6 @@
 // var cache = ['apple', 'banana', 'orange', 'eggplant', 'pear', 'peach'];
 var cache = [];
+var roomName = '';
 
 
 module.exports = {

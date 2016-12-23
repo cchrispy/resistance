@@ -1,3 +1,13 @@
+/*************************
+ *  RESISTANCE ONLINE!  *
+*                        *
+ *  RESISTANCE ONLINE!  *
+*                        *
+ *  RESISTANCE ONLINE!  *
+*************************/
+
+
+
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import App from './components/App.jsx';
