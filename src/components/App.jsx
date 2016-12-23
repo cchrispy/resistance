@@ -7,11 +7,10 @@ class App extends Component {
     this.state = {};
   }
 
-
   render() {
     return (
       <div>
-        <div className='page-header text-center'>
+        <div className='page-header text-center appTitle'>
           <h1><strong>Resistance</strong></h1>
         </div>
       </div>
