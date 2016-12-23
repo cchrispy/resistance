@@ -12,10 +12,13 @@ class App extends Component {
   render() {
     return (
       <div>
+
         <div className='page-header text-center appTitle'>
           <h1><strong>Resistance</strong></h1>
         </div>
+
         <Game />
+        
       </div>
     )
   }

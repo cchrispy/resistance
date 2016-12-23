@@ -10,13 +10,11 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/new', game.new);
 
 router.get('/', (req, res) => {
   /*
   **  Handle GET request
   */
-  // res.end();
   res.status(200).json({ message: cache[Math.floor(Math.random() * 6)] });
 });
 
@@ -26,5 +24,7 @@ router.post('/', (req, res) => {
   */
   res.json({ waddup: 'dawg' });
 });
+
+router.get('/new', game.newGame);
 
 module.exports = router;
