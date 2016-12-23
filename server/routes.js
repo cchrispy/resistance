@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   **  Handle GET request
   */
   // res.end();
-  res.json({ sup: 'yo' });
+  res.status(200).json({ message: 'hi' });
 });
 
 router.post('/', (req, res) => {

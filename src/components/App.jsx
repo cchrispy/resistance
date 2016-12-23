@@ -15,6 +15,7 @@ class App extends Component {
         <div className='page-header text-center appTitle'>
           <h1><strong>Resistance</strong></h1>
         </div>
+        <Game />
       </div>
     )
   }
