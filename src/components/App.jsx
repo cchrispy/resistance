@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import Game from './Game.jsx';
 import '../styles/styles.scss';
 
 class App extends Component {
