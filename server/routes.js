@@ -1,4 +1,5 @@
 var router = require('express').Router();
+var game = require('./handlers/routeHandlers');
 
 var cache = ['apple', 'banana', 'orange', 'eggplant', 'pear', 'peach'];
 
@@ -8,6 +9,8 @@ router.use((req, res, next) => {
   */
   next();
 });
+
+router.get('/new', game.new);
 
 router.get('/', (req, res) => {
   /*

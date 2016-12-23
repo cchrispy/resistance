@@ -6,8 +6,8 @@ class Game extends Component {
     this.state = {};
   }
 
-  clicked() {
-    fetch('/game', {
+  newGame() {
+    fetch('/game/new', {
       method: 'GET',
     }).then(res => {
       res.json().then(json => {
@@ -21,8 +21,8 @@ class Game extends Component {
   render() {
     return (
       <div className='container-fluid'>
-        <button className='btn btn-default' onClick={ this.clicked.bind(this) } >
-          click dis button
+        <button className='btn btn-default' onClick={ this.newGame.bind(this) } >
+          New Game
         </button>
       </div>
     )
