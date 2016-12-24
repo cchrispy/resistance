@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Game from './Game.jsx';
 import '../styles/styles.scss';
@@ -23,4 +24,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  general: state.general
+});
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps)(App);
