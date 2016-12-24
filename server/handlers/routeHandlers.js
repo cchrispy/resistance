@@ -15,10 +15,8 @@ module.exports = {
     ** Set up the players in cache
     ** Send status code
     */
-    console.log(req.body);
     var { roomname, playerCount } = req.body;
     var cards = [];
-    console.log(roomname, playerCount);
 
     room = roomname;
     for (var i = 1; i <= Number(playerCount); i++) {
@@ -26,16 +24,9 @@ module.exports = {
     }
     cards = helpers.shuffle(cards);
     cache = cards;
-    console.log(cache);
 
-    res.status(201).json({ cards: cache });
+    res.status(201).end();
 
-    // cache = ['Tywin Lannister', 'King of the North', 'Arya Stack',
-    //          'Mother of Dragons', 'Khal Drogo'];
-    // res.status(200).json({
-    //   merry: 'CHRISTMAS',
-    //   card: cache[Math.floor(Math.random() * cache.length)]
-    // });
   },
 
 
