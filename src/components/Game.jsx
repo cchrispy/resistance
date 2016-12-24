@@ -25,18 +25,39 @@ class Game extends Component {
     ** This function should prompt users to
     ** create a room and input the # of players
     */
+
+
+    // fetch('/game/new', {
+    //   method: 'GET',
+    // }).then(res => {
+    //   console.log('Status code: ', res.status);
+    //   res.json().then(json => {
+    //     this.setState({
+    //       character: json.card
+    //     })
+    //   })
+    // }).catch(err => {
+    //   console.log('Error: ', err);
+    // });
+
+
     fetch('/game/new', {
-      method: 'GET',
-    }).then(res => {
-      console.log('Status code: ', res.status);
-      res.json().then(json => {
-        this.setState({
-          character: json.card
-        })
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        roomname: 'Room 420',
+        playerCount: '6'
+      })
+    }).then(response => {
+      console.log(`Response status: ${ response.status }`)
+      response.json().then(result => {
+        console.log(result);
       })
     }).catch(err => {
-      console.log('Error: ', err);
-    });
+      console.log(`Error: ${ err }`);
+    })
   }
 
   prompt() {
