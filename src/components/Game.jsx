@@ -11,7 +11,7 @@ class Game extends Component {
     };
   }
 
-  newGame() {
+  newGame(event) {
     /*
     ** Should trigger a prompt to ask
     ** for the room name and
@@ -28,56 +28,44 @@ class Game extends Component {
     ** create a room and input the # of players
     */
 
-
-
-    fetch('/game/new', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: {
-        roomName: this.state.roomName,
-        playerCount: this.state.playerCount
-      }
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log('Error: ', err);
-    });
-
-  }
-
-  changeRoom(event) {
-    // event.preventDefault();
-    this.setState({ roomName: event.target.value });
-    console.log(event.target.value)
-  }
-
-  changeCount(event) {
-    // event.preventDefault();
-    this.setState({ playerCount: event.target.value });
-    console.log(event.target.value)
-  }
-
-  handleSubmit(event) {
     event.preventDefault();
-    console.log('A name was submitted: ' + this.state);
 
     fetch('/game/new', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
       },
-      body: {
-        roomName: this.state.roomName,
-        playerCount: this.state.playerCount
-      }
+      body: JSON.stringify({
+        "roomname": this.state.roomname,
+        "playerCount": this.state.playerCount
+      })
     }).then(res => {
       console.log(res)
     }).catch(err => {
       console.log('Error: ', err);
     });
 
+  }
+
+  revealCard() {
+    fetch('/game/new', {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      console.log(res);
+      res.json().then(results => {
+        console.log(results);
+      })
+    }).catch(err => {
+      console.log('Error: ', err);
+    });
+  }
+
+  change(event, parameter) {
+    event.preventDefault();
+    this.setState({ [parameter]: event.target.value });
   }
 
   prompt() {
@@ -98,12 +86,16 @@ class Game extends Component {
           New Game
         </button>
 
-      <form onSubmit={this.handleSubmit.bind(this)}>
+        <button className='btn btn-default' onClick={ this.revealCard.bind(this) } >
+          Reveal Card
+        </button>
+
+      <form onSubmit={this.newGame.bind(this)}>
         <label>
           Room Name:
-          <input type="text" onChange={this.changeRoom.bind(this)} />
+          <input type="text" onChange={event => { this.change(event, 'roomname')} }  />
           Player Count:
-          <input type="text" onChange={this.changeCount.bind(this)} />
+          <input type="text" onChange={event => { this.change(event, 'playerCount')} }  />
         </label>
         <input type="submit" value="Submit" />
       </form>
