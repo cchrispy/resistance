@@ -30,6 +30,6 @@ router.post('/', (req, res) => {
   res.json({ waddup: 'dawg' });
 });
 
-router.get('/new', game.newGame);
+router.post('/new', game.newGame);
 
 module.exports = router;

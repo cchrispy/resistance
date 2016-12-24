@@ -5,13 +5,15 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      character: 'Unknown'
+      character: 'Unknown',
+      roomName: '',
+      playerCount: 0,
     };
   }
 
   newGame() {
     /*
-    ** Should trigger a prompt to ask 
+    ** Should trigger a prompt to ask
     ** for the room name and
     ** the number of players.
     */
@@ -25,15 +27,53 @@ class Game extends Component {
     ** This function should prompt users to
     ** create a room and input the # of players
     */
+
+
+
     fetch('/game/new', {
-      method: 'GET',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: {
+        roomName: this.state.roomName,
+        playerCount: this.state.playerCount
+      }
     }).then(res => {
-      console.log('Status code: ', res.status);
-      res.json().then(json => {
-        this.setState({
-          character: json.card
-        })
-      })
+      console.log(res)
+    }).catch(err => {
+      console.log('Error: ', err);
+    });
+
+  }
+
+  changeRoom(event) {
+    // event.preventDefault();
+    this.setState({ roomName: event.target.value });
+    console.log(event.target.value)
+  }
+
+  changeCount(event) {
+    // event.preventDefault();
+    this.setState({ playerCount: event.target.value });
+    console.log(event.target.value)
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('A name was submitted: ' + this.state);
+
+    fetch('/game/new', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: {
+        roomName: this.state.roomName,
+        playerCount: this.state.playerCount
+      }
+    }).then(res => {
+      console.log(res)
     }).catch(err => {
       console.log('Error: ', err);
     });
@@ -45,6 +85,9 @@ class Game extends Component {
     ** and enter the number of players to join
     ** Send the results to the server
     */
+
+    // post to game/new
+    // headers: application.type = app json; body format
   }
 
   render() {
@@ -53,6 +96,16 @@ class Game extends Component {
         <button className='btn btn-default' onClick={ this.newGame.bind(this) } >
           New Game
         </button>
+
+      <form onSubmit={this.handleSubmit.bind(this)}>
+        <label>
+          Room Name:
+          <input type="text" onChange={this.changeRoom.bind(this)} />
+          Player Count:
+          <input type="text" onChange={this.changeCount.bind(this)} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
 
         <div className='container-fluid'>
           <div className='row'>
