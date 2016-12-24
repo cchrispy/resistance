@@ -96,7 +96,7 @@ class Game extends Component {
           Reveal Card
         </button>
 
-      <form onSubmit={this.newGame.bind(this)}>
+      <form onSubmit={ this.newGame.bind(this) }>
         <label>
           Room Name:
           <input type="text" onChange={event => { this.change(event, 'roomname')} }  />
@@ -108,9 +108,6 @@ class Game extends Component {
 
         <div className='container-fluid'>
           <div className='row'>
-            <Card character={ this.state.character }/>
-            <Card character={ this.state.character }/>
-            <Card character={ this.state.character }/>
             <Card character={ this.state.character }/>
             <Card character={ this.state.character }/>
             <Card character={ this.state.character }/>
