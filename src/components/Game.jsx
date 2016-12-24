@@ -6,7 +6,7 @@ class Game extends Component {
     super(props);
     this.state = {
       character: 'Unknown',
-      roomName: '',
+      roomname: '',
       playerCount: 0,
     };
   }
