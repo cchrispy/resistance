@@ -77,6 +77,7 @@ class Game extends Component {
     }).catch(err => {
       console.log('Error: ', err);
     });
+
   }
 
   prompt() {
