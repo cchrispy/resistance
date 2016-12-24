@@ -30,6 +30,8 @@ class Game extends Component {
 
     event.preventDefault();
 
+    /* Tells server to generate cards appropriate for the number of players */
+
     fetch('/game/new', {
       method: 'POST',
       headers: {
@@ -48,6 +50,10 @@ class Game extends Component {
   }
 
   revealCard() {
+
+    /* Server selects a random card and sends it to the client */
+    /* A user can only query the server for a card one time    */
+
     fetch('/game/new', {
       method: 'GET',
       headers: {
