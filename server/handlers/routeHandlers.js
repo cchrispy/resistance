@@ -1,7 +1,7 @@
 var helpers = require('./helpers');
 
 // var cache = ['apple', 'banana', 'orange', 'eggplant', 'pear', 'peach'];
-var cache;
+var cache = [];
 var room = '';
 
 
@@ -50,6 +50,5 @@ module.exports = {
     }
 
   },
-
 
 }
