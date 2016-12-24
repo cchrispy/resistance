@@ -14,6 +14,7 @@ module.exports = {
     ** Request body object { roomname: STRING, playerCount: NUMBER }
     ** Set up the players in cache
     ** Send status code 201
+    ** Send roomname and playerCount back to client
     */
     var { roomname, playerCount } = req.body;
 
@@ -30,7 +31,7 @@ module.exports = {
     cards = helpers.shuffle(cards);
     cache = cards;
 
-    res.status(201).end();
+    res.status(201).json(req.body);
 
   },
 
@@ -40,6 +41,13 @@ module.exports = {
     ** GET request to reveal a player's card
     ** Status code 200
     */
+
+    if (!cache.length) {
+      res.status(404).end();
+    } else {
+      var character = cache.pop();
+      res.status(200).json({ character });
+    }
 
   },
 
