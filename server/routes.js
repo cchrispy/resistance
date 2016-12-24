@@ -30,6 +30,9 @@ router.post('/', (req, res) => {
   res.json({ waddup: 'dawg' });
 });
 
-router.post('/new', game.newGame);
+router.post('/new', game.newGame); // initiates the cards for a new game
+
+router.get('/new', game.revealCard);
+
 
 module.exports = router;

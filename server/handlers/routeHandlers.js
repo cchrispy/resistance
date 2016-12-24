@@ -13,9 +13,14 @@ module.exports = {
     ** POST request to set up the initial game
     ** Request body object { roomname: STRING, playerCount: NUMBER }
     ** Set up the players in cache
-    ** Send status code
+    ** Send status code 201
     */
     var { roomname, playerCount } = req.body;
+
+    if (!roomname || !playerCount) {
+      res.status(400).json({ message: 'Invalid request' })
+    }
+
     var cards = [];
 
     room = roomname;
@@ -26,6 +31,15 @@ module.exports = {
     cache = cards;
 
     res.status(201).end();
+
+  },
+
+  revealCard: (req, res, next) => {
+
+    /*
+    ** GET request to reveal a player's card
+    ** Status code 200
+    */
 
   },
 
