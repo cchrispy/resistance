@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Card from './Card.jsx';
 
 class Game extends Component {

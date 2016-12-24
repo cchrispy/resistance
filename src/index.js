@@ -19,6 +19,7 @@ import reducer from './reducers/reducer.js';
 var store = createStore(reducer);
 
 var refresh = () => {
+  console.log(store.getState());
   render(
     <Provider store={ store }>
       <App />
@@ -28,5 +29,5 @@ var refresh = () => {
 }
 
 refresh();
-store.subscribe(render);
+store.subscribe(refresh);
 store.subscribe(() => console.log(store.getState()));
