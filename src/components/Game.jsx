@@ -127,7 +127,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-
+  
 });
 
 const mapDispatchToProps = dispatch => ({
