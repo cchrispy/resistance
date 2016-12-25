@@ -4,10 +4,10 @@ var helpers = require('./helpers');
 var cache = [];
 var room = '';
 
-
 module.exports = {
 
   newGame: (req, res, next) => {
+    console.log('POST request for new game: ', req.body);
 
     /*
     ** POST request to set up the initial game
@@ -16,7 +16,7 @@ module.exports = {
     ** Send status code 201
     ** Send roomname and playerCount back to client
     */
-    var { roomname, playerCount } = req.body;
+    var { roomname, playerCount, username } = req.body;
 
     if (!roomname || !playerCount) {
       res.status(400).json({ message: 'Invalid request' })
@@ -33,6 +33,22 @@ module.exports = {
 
     res.status(201).json(req.body);
 
+  },
+
+  joinGame: (req, res, next) => {
+    console.log('POST request for joining game: ', req.body);
+
+    var { roomname, username } = req.body;
+
+    if (!username || roomname !== room) {
+      res.status(400).json({ message: 'Invalid request' })
+    }
+
+    res.status(200).json(Object.assign(req.body));
+
+    /*
+    ** 
+    */
   },
 
   revealCard: (req, res, next) => {

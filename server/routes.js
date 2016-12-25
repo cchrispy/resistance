@@ -31,6 +31,7 @@ router.post('/', (req, res) => {
 });
 
 router.post('/new', game.newGame); // initiates the cards for a new game
+router.post('/join', game.joinGame); // attemps to join a room
 
 router.get('/new', game.revealCard);
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { changeRoom, changePlayerCount, changePlayerName } from '../actions/generalAction';
+
 class General extends Component {
   constructor(props) {
     super(props);
@@ -38,29 +40,93 @@ class General extends Component {
   newRoomForm(e, input) {
     e.preventDefault();
     this.setState({
-      newRoomForm: {
+      newRoomForm: Object.assign(this.state.newRoomForm, {
         [input]: e.target.value
-      }
+      })
     })
   }
 
   joinRoomForm(e, input) {
     e.preventDefault();
     this.setState({
-      joinRoomForm: {
+      joinRoomForm: Object.assign(this.state.joinRoomForm, {
         [input]: e.target.value
-      }
+      })
     })
   }
 
   newRoom(e) {
     e.preventDefault();
-    console.log(this.state.newRoomForm);
+
+    /*
+    ** Send username, roomname, playerCount to server to generate the cards
+    */
+    fetch('/game/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.newRoomForm.username,
+        roomname: this.state.newRoomForm.roomname,
+        playerCount: this.state.newRoomForm.playerCount
+      })
+    }).then(response => {
+      response.json().then(res => {
+        if (response.status === 201) {
+
+          console.log('Room created. Cards generated.', res);
+
+          /*
+          ** Update the redux store with the username, roomname, playerCount
+          */
+          this.props.changeUser(this.state.newRoomForm.username);
+          this.props.changeRoom(this.state.newRoomForm.roomname);
+          this.props.changePlayerCount(this.state.newRoomForm.playerCount);
+
+        } else {
+          console.log('Failed to create room. Try again.');
+        }
+      }).catch(err => {
+        console.log('Failure: ', err);
+      })
+    })
   }
 
   joinRoom(e) {
     e.preventDefault();
-    console.log(this.state.joinRoomForm);
+
+    /*
+    ** Sends username, roomname to server to check if the room exists
+    */
+    fetch('/game/join', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.joinRoomForm.username,
+        roomname: this.state.joinRoomForm.roomname
+      })
+    }).then(response => {
+      response.json().then(res => {
+        if (response.status === 200) {
+
+          console.log('Room joined successfully.');
+
+          /*
+          ** Update the redux store with the username and roomname
+          */
+          this.props.changeUser(this.state.joinRoomForm.username);
+          this.props.changeRoom(this.state.joinRoomForm.roomname);
+        } else {
+          console.log('Failed to join room. Try again.');
+        }
+      })
+    }).catch(err => {
+      console.log('Failure: ', err);
+    })
+
   }
 
   render() {
@@ -111,7 +177,7 @@ class General extends Component {
           </button>
           {
             !this.state.joinRoomFormVisibility ? null :
-            <form className='form-inline'>
+            <form className='form-inline' onSubmit={ this.joinRoom.bind(this) } >
               <div className='form-group'>
                 <label>Username: </label>
                 <input type='text' 
@@ -126,7 +192,7 @@ class General extends Component {
                        placeholder={ Math.random() > 0.05 ? 'Planet Earth' : 'Lala Land' }
                        onChange={ (e) => this.joinRoomForm(e, 'roomname') } />
               </div>
-              <button type='button' className='btn btn-default'>
+              <button type='submit' className='btn btn-default'>
                 Join
               </button>
             </form>
@@ -138,4 +204,22 @@ class General extends Component {
   }
 }
 
-export default General;
+const mapStateToProps = state => ({
+  username: state.general.username,
+  roomname: state.general.roomname,
+  playerCount: state.general.playerCount
+})
+
+const mapDispatchToProps = dispatch => ({
+  changeUser: username => {
+    dispatch(changePlayerName(username));
+  },
+  changeRoom: roomname => {
+    dispatch(changeRoom(roomname));
+  },
+  changePlayerCount: playerCount => {
+    dispatch(changePlayerCount(playerCount));
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(General);
