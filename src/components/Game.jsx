@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import General from './General.jsx';
 import Card from './Card.jsx';
 
 class Game extends Component {
@@ -90,6 +91,9 @@ class Game extends Component {
   render() {
     return (
       <div id='game'>
+
+        <General />
+
         <button className='btn btn-default' onClick={ this.newGame.bind(this) } >
           New Game
         </button>
