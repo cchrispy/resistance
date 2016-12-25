@@ -30,12 +30,31 @@ class General extends Component {
     return (
       <div>
         <div>
-          <button className='btn btn-primary' onClick={ this.newRoom.bind(this) } >
+
+          <button type='button' className='btn btn-lg btn-block btn-primary' onClick={ this.newRoom.bind(this) } >
             Create a room
           </button>
-          <button className='btn btn-success' onClick={ this.joinRoom.bind(this) } >
+          { !this.state.newRoomForm ? null :
+            <form className='form-inline'>
+              <div className='form-group'>
+                <label>Username </label>
+                <input type='text' className='form-control' placeholder='Cauf E.' />
+              </div>
+              <div className='form-group'>
+                <label>Room name </label>
+                <input type='text' className='form-control' placeholder='Lala Land' />
+              </div>
+              <div className='form-group'>
+                <label>Number of Players </label>
+                <input type='text' className='form-control' placeholder='6' />
+              </div>
+            </form>
+          }
+
+          <button type='button' className='btn btn-lg btn-block btn-success' onClick={ this.joinRoom.bind(this) } >
             Join a room
           </button>
+
         </div>
       </div>
     )
