@@ -13,7 +13,7 @@ class General extends Component {
   newRoom(e) {
     e.preventDefault();
     this.setState({
-      newRoomForm: true,
+      newRoomForm: !this.state.newRoomForm,
       joinRoomForm: false
     })
   }
@@ -22,13 +22,13 @@ class General extends Component {
     e.preventDefault();
     this.setState({
       newRoomForm: false,
-      joinRoomForm: true
+      joinRoomForm: !this.state.joinRoomForm
     })
   }
 
   render() {
     return (
-      <div>
+      <div id='general'>
         <div>
 
           <button type='button' className='btn btn-lg btn-block btn-primary' onClick={ this.newRoom.bind(this) } >
@@ -46,7 +46,17 @@ class General extends Component {
               </div>
               <div className='form-group'>
                 <label>Number of Players </label>
-                <input type='text' className='form-control' placeholder='6' />
+                <select className='form-control' placeholder='5' >
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+                <button type='button' className='btn btn-default'>
+                  Submit
+                </button>
               </div>
             </form>
           }
