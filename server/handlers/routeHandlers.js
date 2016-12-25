@@ -38,6 +38,11 @@ module.exports = {
   joinGame: (req, res, next) => {
     console.log('POST request for joining game: ', req.body);
 
+    /*
+    ** POST request to join an existing room
+    ** Request body object { roomname: STRING, username: STRING }
+    ** Verify if the roomname exists and send status code 200
+    */
     var { roomname, username } = req.body;
 
     if (!username || roomname !== room) {
@@ -46,9 +51,6 @@ module.exports = {
 
     res.status(200).json(Object.assign(req.body));
 
-    /*
-    ** 
-    */
   },
 
   revealCard: (req, res, next) => {
