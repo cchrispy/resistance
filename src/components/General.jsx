@@ -37,15 +37,15 @@ class General extends Component {
           { !this.state.newRoomForm ? null :
             <form className='form-inline'>
               <div className='form-group'>
-                <label>Username </label>
-                <input type='text' className='form-control' placeholder='Cauf E.' />
+                <label>Username: </label>
+                <input type='text' className='form-control' placeholder={ Math.random() > 0.25 ? 'Schwarzenegger' : 'Keanu Reeves' } />
               </div>
               <div className='form-group'>
-                <label>Room name </label>
-                <input type='text' className='form-control' placeholder='Lala Land' />
+                <label>Room name: </label>
+                <input type='text' className='form-control' placeholder={ Math.random() > 0.25 ? 'Planet Earth' : 'Lala Land' } />
               </div>
               <div className='form-group'>
-                <label>Number of Players </label>
+                <label>Number of Players: </label>
                 <select className='form-control' placeholder='5' >
                   <option>5</option>
                   <option>6</option>
@@ -55,7 +55,7 @@ class General extends Component {
                   <option>10</option>
                 </select>
                 <button type='button' className='btn btn-default'>
-                  Submit
+                  Create
                 </button>
               </div>
             </form>
@@ -64,6 +64,22 @@ class General extends Component {
           <button type='button' className='btn btn-lg btn-block btn-success' onClick={ this.joinRoom.bind(this) } >
             Join a room
           </button>
+          {
+            !this.state.joinRoomForm ? null :
+            <form className='form-inline'>
+              <div className='form-group'>
+                <label>Username: </label>
+                <input type='text' className='form-control' placeholder={ Math.random() > 0.25 ? 'Schwarzenegger' : 'Keanu Reeves' } />
+              </div>
+              <div className='form-group'>
+                <label>Room name: </label>
+                <input type='text' className='form-control' placeholder={ Math.random() > 0.25 ? 'Planet Earth' : 'Lala Land' } />
+              </div>
+              <button type='button' className='btn btn-default'>
+                Join
+              </button>
+            </form>
+          }
 
         </div>
       </div>
