@@ -89,37 +89,44 @@ class Game extends Component {
   }
 
   render() {
+    // return (
+    //   <div id='game'>
+
+    //     <General />
+
+    //     <button className='btn btn-default' onClick={ this.newGame.bind(this) } >
+    //       New Game
+    //     </button>
+
+    //     <button className='btn btn-default' onClick={ this.revealCard.bind(this) } >
+    //       Reveal Card
+    //     </button>
+
+    //   <form onSubmit={ this.newGame.bind(this) }>
+    //     <label>
+    //       Room Name:
+    //       <input type="text" onChange={event => { this.change(event, 'roomname')} }  />
+    //       Player Count:
+    //       <input type="text" onChange={event => { this.change(event, 'playerCount')} }  />
+    //     </label>
+    //     <input type="submit" value="Submit" />
+    //   </form>
+
+    //     <div className='container-fluid'>
+    //       <div className='row'>
+    //         <Card character={ this.state.character }/>
+    //         <Card character={ this.state.character }/>
+    //         <Card character={ this.state.character }/>
+    //         <Card character={ this.state.character }/>
+    //       </div>
+    //     </div>
+
+    //   </div>
+    // )
     return (
       <div id='game'>
 
         <General />
-
-        <button className='btn btn-default' onClick={ this.newGame.bind(this) } >
-          New Game
-        </button>
-
-        <button className='btn btn-default' onClick={ this.revealCard.bind(this) } >
-          Reveal Card
-        </button>
-
-      <form onSubmit={ this.newGame.bind(this) }>
-        <label>
-          Room Name:
-          <input type="text" onChange={event => { this.change(event, 'roomname')} }  />
-          Player Count:
-          <input type="text" onChange={event => { this.change(event, 'playerCount')} }  />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-
-        <div className='container-fluid'>
-          <div className='row'>
-            <Card character={ this.state.character }/>
-            <Card character={ this.state.character }/>
-            <Card character={ this.state.character }/>
-            <Card character={ this.state.character }/>
-          </div>
-        </div>
 
       </div>
     )
@@ -127,7 +134,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  general: state.general
 });
 
 const mapDispatchToProps = dispatch => ({
