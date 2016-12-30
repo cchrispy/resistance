@@ -4,6 +4,7 @@ var helpers = require('./helpers');
 var cache = [];
 var room = '';
 
+
 module.exports = {
 
   newGame: (req, res, next) => {
