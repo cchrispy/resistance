@@ -8,7 +8,7 @@ const Card = props => (
       <img src='http://bit.ly/2h7Hlin'/>
       <div className='caption'>
         <h4>You are { props.character } </h4>
-        <p>And here is a description of you! :O</p>
+        <p>And here is a description of you!! :O</p>
       </div>
 
     </div>
