@@ -5,7 +5,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: "index.html",
   template: path.join(__dirname, 'src', 'index.html'),
   inject: 'body'
-}); 
+});
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.js'),
