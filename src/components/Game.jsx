@@ -89,6 +89,7 @@ class Game extends Component {
   }
 
   render() {
+
     // return (
     //   <div id='game'>
 
@@ -123,6 +124,7 @@ class Game extends Component {
 
     //   </div>
     // )
+    
     return (
       <div id='game'>
 
